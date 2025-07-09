@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>DataLume - Bem-vindo</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+</head>
+<body class="splash-page">
+
+  <div class="splash-logo-container">
+    <!-- Logomarca DataLume centralizada -->
+    <img src="{{ url_for('static', filename='img/datalume.png') }}" class="logo-central" alt="Logo DataLume">
+  </div>
+
+  <div class="splash-central">
+    <!-- Título principal -->
+    <div class="splash-titulo">Bem-vindo ao DataLume</div>
+
+    <!-- Slogan azul petróleo, uma linha -->
+    <div class="slogan">Sua nova ferramenta para transformar dados brutos em decisões inteligentes</div>
+
+    <!-- Subtítulo em azul -->
+    <div class="splash-subtitulo">O que é o DataLume?</div>
+
+    <!-- Descrição -->
+    <div class="splash-descricao">
+      DataLume é uma aplicação desenvolvida para automatizar o tratamento de dados em Excel, gerar indicadores gráficos interativos, análises e integrar visualmente as informações com apenas alguns cliques. Criado para trazer clareza, agilidade e inteligência à análise de dados, seja no setor público ou na iniciativa privada.
+    </div>
+
+    <!-- Frase de impacto acima do botão -->
+    <div class="splash-impacto">Com o DataLume, clareza e agilidade andam juntas.</div>
+
+    <!-- Botão e barra de progresso centralizados -->
+    <div class="splash-btn-container">
+      <button id="start-btn" class="btn-primario splash-btn">Ver compatibilidade</button>
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/splash.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Checklist do Sistema - DataLume</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+</head>
+<body class="checklist-page">
+
+  <!-- Logomarca DataLume centralizada no topo -->
+  <div style="text-align:center; margin-top:18px; margin-bottom:12px;">
+    <img src="{{ url_for('static', filename='img/datalume.png') }}" alt="Logo DataLume" class="logo-central">
+  </div>
+
+  <div class="check-container">
+    <h1 class="splash-titulo" style="margin-top: 0; margin-bottom: 13px;">Checklist do Sistema</h1>
+    <p class="check-explicacao" style="margin-bottom: 35px;">
+      Esta página faz uma verificação automática para garantir que seu computador está pronto para utilizar todas as funcionalidades do DataLume.<br>
+      Caso algum item esteja em vermelho ou como ‘Não instalado’, pode haver limitações no uso do sistema e recomendamos ajustar o ambiente antes de prosseguir.
+    </p>
+
+    <!-- Grupos em linha (lado a lado) -->
+    <div class="check-groups" style="flex-direction:row; gap:36px;">
+      <!-- Configuração do Sistema -->
+      <div class="check-group">
+        <h2>Configuração do Sistema</h2>
+        <table>
+          <tr><th>Item</th><th>Status</th></tr>
+          <tr><td>Sistema Operacional</td><td>{{ sistema }}</td></tr>
+          <tr><td>Arquitetura</td><td>{{ arquitetura }}</td></tr>
+          <tr><td>Versão do Python</td><td>{{ python_version }}</td></tr>
+          <tr><td>Microsoft Excel</td><td>{{ excel }}</td></tr>
+          <tr><td>Power BI Desktop</td><td>{{ power_bi }}</td></tr>
+        </table>
+      </div>
+      <!-- Pré-requisitos do DataLume -->
+      <div class="check-group">
+        <h2>Pré-requisitos do DataLume</h2>
+        <table>
+          <tr><th>Item</th><th>Status</th></tr>
+          <tr>
+            <td>Permissão de Escrita</td>
+            <td>{% if permissao %}OK{% else %}<span class="fail">Sem permissão</span>{% endif %}</td>
+          </tr>
+          <tr>
+            <td>Biblioteca Flask</td>
+            <td>{% if flask %}Instalada{% else %}<span class="fail">Não instalada</span>{% endif %}</td>
+          </tr>
+          <tr>
+            <td>Biblioteca Pandas</td>
+            <td>{% if pandas %}Instalada{% else %}<span class="fail">Não instalada</span>{% endif %}</td>
+          </tr>
+          <tr>
+            <td>Biblioteca openpyxl</td>
+            <td>{% if openpyxl %}Instalada{% else %}<span class="fail">Não instalada</span>{% endif %}</td>
+          </tr>
+          <tr>
+            <td>Biblioteca xlrd</td>
+            <td>{% if xlrd %}Instalada{% else %}<span class="fail">Não instalada</span>{% endif %}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Botão azul padrão, mais afastado das tabelas -->
+    <div class="check-btn-container" style="text-align:center; margin-top:50px;">
+      <a href="/start-home" class="btn-primario" style="padding: 13px 32px; font-size:17px; border-radius:7px; background:#0052cc; color:#fff; text-decoration:none; font-weight:600;">Prosseguir para o DataLume</a>
+    </div>
+  </div>
+</body>
+</html>

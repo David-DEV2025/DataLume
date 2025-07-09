@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>DataLume - Importação de Dados</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+</head>
+<body class="start-home">
+
+  <!-- Barra lateral push (com aba fixa), só exibe se houver preview -->
+  {% if previews %}
+  <div class="sidebar{% if sidebar_fechada %} fechado{% endif %}" id="sidebar">
+    <button class="sidebar-tab" id="toggleSidebar" title="Expandir/recolher barra lateral">⇄</button>
+    <div class="sidebar-content">
+      <h2>⚒️ Tratar Dados</h2>
+      <!-- Ferramentas futuras -->
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Logo mini no topo direito -->
+  <img src="{{ url_for('static', filename='img/datalume.png') }}" alt="Logo Mini DataLume" class="logo-mini">
+
+  <!-- Conteúdo principal -->
+  <div id="mainContent" class="main-content push-main">
+    <h1 class="titulo-azul alinhado-esquerda">Ferramenta de Tratamento de Dados - DataLume</h1>
+
+    <!-- Alerta de estrutura diferente -->
+    {% if alerta_estrutura %}
+      <div class="alerta-estrutura">
+        <p>{{ alerta_estrutura|safe }}</p>
+        <button onclick="window.location.reload()">Ciente</button>
+      </div>
+    {% endif %}
+
+    <!-- Formulário para upload de arquivos e logos -->
+    <form method="POST" enctype="multipart/form-data" id="formularioUpload">
+      <div class="home-grid">
+        <!-- Coluna de logos -->
+        <div class="logo-coluna">
+          <!-- Logo da organização -->
+          <div class="upload-box" id="box-logo-org">
+            {% if logo_org %}
+              <img src="{{ url_for('serve_export', filename=logo_org) }}" class="img-logo" />
+            {% else %}
+              <label class="upload-label">
+                <span class="instrucoes">Arraste ou clique para importar<br>PNG, JPG, JPEG</span>
+                <input type="file" name="logo_org" accept=".png,.jpg,.jpeg" onchange="uploadLogo('logo_org', this)">
+              </label>
+            {% endif %}
+          </div>
+          <!-- Logo do setor -->
+          <div class="upload-box" id="box-logo-setor">
+            {% if logo_setor %}
+              <img src="{{ url_for('serve_export', filename=logo_setor) }}" class="img-logo" />
+            {% else %}
+              <label class="upload-label">
+                <span class="instrucoes">Arraste ou clique para importar<br>PNG, JPG, JPEG</span>
+                <input type="file" name="logo_setor" accept=".png,.jpg,.jpeg" onchange="uploadLogo('logo_setor', this)">
+              </label>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Upload de dados e lista de arquivos importados -->
+        <div class="upload-dados">
+          <h3>⚙️ Carregar Base de Dados Brutos</h3>
+          <small>Escolha um ou mais arquivos Excel</small>
+          <div class="dropzone">
+            <label class="upload-label">
+              <span class="instrucoes">Arraste, solte ou clique<br>.CSV, .XLSX</span>
+              <input type="file" name="datafiles" multiple accept=".csv,.xlsx" onchange="uploadFiles(this)">
+            </label>
+          </div>
+          <!-- Lista dos arquivos importados -->
+          {% if arquivos_lista and not alerta_estrutura %}
+            <ul class="lista-arquivos">
+              {% for item in arquivos_lista %}
+                <li>
+                  <span class="nome-arquivo">{{ item.filename }} <small>({{ item.tamanho_kb }} KB)</small></span>
+                  <button class="btn-remover" title="Excluir arquivo" onclick="removerArquivo('{{ item.filename }}');return false;">🗑️</button>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      </div>
+    </form>
+
+    <!-- Preview da tabela UNIFICADA -->
+    {% if previews %}
+      <div class="preview-container">
+        {% for item in previews %}
+          <div class="preview-bloco">
+            <div class="table-wrapper">
+              {{ item.preview | safe }}
+            </div>
+            <div style="margin-top:18px;">
+              <button id="exportarTratada" class="btn-primario">Exportar base tratada (.csv)</button>
+              <button id="finalizarTratamento" class="btn-secundario" style="margin-left:18px;">Finalizar tratamento</button>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <!-- Modal de alerta de exportação pendente -->
+    <div id="modalAlerta" class="modal-bg" style="display:none;">
+      <div class="modal-dialog">
+        <div>
+          <b>Atenção!</b>
+          <p>Você ainda não exportou a base tratada.<br>
+            Tem certeza que deseja finalizar e apagar todos os arquivos?</p>
+        </div>
+        <div class="modal-botoes" id="modalConfirmaFinalizar">
+          <button id="btnConfirmaFinalizar" class="btn-primario">Sim, finalizar</button>
+          <button id="btnCancelaFinalizar" class="btn-secundario">Cancelar</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

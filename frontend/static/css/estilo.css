@@ -1,0 +1,633 @@
+/* ----------------------------------
+   Estilo geral da página inteira
+---------------------------------- */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', 'Montserrat', sans-serif;
+  background: #f8fbfd;
+  color: #333;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ----------------------------------
+   LOGOMARCA TOPO PADRÃO
+---------------------------------- */
+.logo-topo {
+  width: 350px;
+  max-width: 95vw;
+  display: block;
+  margin: 38px auto 22px auto;
+  background: none;
+  box-shadow: none;
+}
+
+@media (max-width: 500px) {
+  .logo-topo {
+    width: 80vw;
+    margin-top: 22px;
+    margin-bottom: 10px;
+  }
+}
+
+/* ----------------------------------
+   Splash Page - Centralização e Visual
+---------------------------------- */
+.splash-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background: #f8fbfd;
+  justify-content: center;
+}
+.splash-logo-container {
+  margin-top: 10px;
+  text-align: center;
+}
+.logo-central {
+  width: 350px;
+  max-width: 95vw;
+  margin: 0 auto 18px auto;
+  display: block;
+  background: none;
+  box-shadow: none;
+}
+
+/* Bloco central da splash */
+.splash-central {
+  max-width: 510px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 12px 18px 0 18px;
+  border-radius: 20px;
+}
+
+/* Título principal centralizado */
+.splash-titulo {
+  font-size: 29px;
+  font-weight: bold;
+  margin-top: 12px;
+  margin-bottom: 10px;
+  color: #222;
+  text-align: center;
+}
+
+/* Slogan azul-petróleo, 1 linha */
+.slogan {
+  color: #008080;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  margin-top: 4px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Subtítulo azul centralizado */
+.splash-subtitulo {
+  color: #0052cc;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  margin-top: 25px;
+  text-align: center;
+}
+
+/* Descrição do DataLume (centralizada) */
+.splash-descricao {
+  font-size: 15.7px;
+  color: #444;
+  line-height: 1.68;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Frase de impacto acima do botão */
+.splash-impacto {
+  font-size: 17px;
+  color: #222;
+  font-weight: 600;
+  margin-bottom: 24px;
+  margin-top: 4px;
+  text-align: center;
+}
+
+/* Botão e barra de progresso centralizados */
+.splash-btn-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.splash-btn {
+  min-width: 180px;
+  max-width: 320px;
+  font-size: 17px;
+  padding: 11px 0;
+  margin: 0 auto 13px auto;
+  display: block;
+  background-color: #0052cc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.splash-btn:hover:enabled {
+  background-color: #003d99;
+  transform: scale(1.04);
+}
+.splash-btn:disabled,
+.btn-desativado {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Barra de progresso centralizada com largura fixa */
+.progress-bar-container {
+  width: 550px;
+  margin: 0 auto;
+  background: none;
+  padding: 0;
+  height: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.progress-bar {
+  width: 0%;
+  height: 6px;
+  background-color: #00cc99;
+  border-radius: 10px;
+  transition: width 0.3s;
+}
+
+/* Responsivo para telas menores */
+@media (max-width: 500px) {
+  .splash-central { max-width: 95vw; }
+  .progress-bar-container { width: 95vw; max-width: 300px;}
+  .logo-central { width: 80vw; max-width: 99vw;}
+}
+
+/* ----------------------------------
+   Checklist Page - Blocos e Tabelas
+---------------------------------- */
+.check-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 18px 42px 18px;
+  text-align: center;
+}
+.check-groups {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 28px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+.check-group {
+  flex: 1 1 340px;
+  min-width: 295px;
+  max-width: 420px;
+  background: #fafbfd;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #0001;
+  padding: 20px 10px;
+}
+.check-group h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+}
+.check-group table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 15px;
+}
+.check-group th,
+.check-group td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+.check-group th {
+  background-color: #f0f7ff;
+  font-weight: bold;
+}
+.ok {
+  color: green;
+  font-weight: bold;
+}
+.fail {
+  color: red;
+  font-weight: bold;
+}
+
+/* Botão checklist padronizado */
+.checklist-btn {
+  min-width: 180px;
+  max-width: 320px;
+  font-size: 17px;
+  padding: 11px 0;
+  margin: 0 auto 13px auto;
+  display: block;
+  background-color: #0052cc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.checklist-btn:hover:enabled {
+  background-color: #003d99;
+  transform: scale(1.04);
+}
+.checklist-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+  .check-groups {
+    flex-direction: column;
+    gap: 0px;
+  }
+  .check-group {
+    max-width: 100vw;
+    margin-bottom: 22px;
+  }
+}
+
+/* ----------------------------------
+   Página HOME - Upload/Preview/Sidebar
+---------------------------------- */
+.layout {
+  display: flex;
+  height: 100vh;
+}
+.push-main {
+  margin-left: 240px;
+  transition: margin-left 0.35s cubic-bezier(.4,0,.2,1);
+}
+.shrink {
+  margin-left: 52px !important;
+  transition: margin-left 0.35s cubic-bezier(.4,0,.2,1);
+}
+
+.main-content {
+  width: 100%;
+  padding: 30px 0 0 0;
+  background: #f8fbfd;
+  min-height: 100vh;
+}
+
+/* SIDEBAR PUSH COM ABA FIXA */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 240px;
+  background: linear-gradient(180deg, #073366 70%, #19529b 100%);
+  color: #fff;
+  z-index: 1002;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.07);
+  padding: 24px 0 0 0;
+  transition: transform 0.35s cubic-bezier(.4,0,.2,1), width 0.35s cubic-bezier(.4,0,.2,1);
+}
+.sidebar.fechado {
+  transform: translateX(-188px);
+  width: 52px;
+  min-width: 0;
+  overflow: visible;
+  padding-left: 0;
+  padding-right: 0;
+}
+.sidebar-tab {
+  position: fixed;
+  left: 202px;
+  top: 22px;
+  width: 36px;
+  height: 46px;
+  background: #073366;
+  color: #fff;
+  border: 2px solid #19529b;
+  border-left: none;
+  border-radius: 0 12px 12px 0;
+  cursor: pointer;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2001;
+  box-shadow: 2px 2px 8px #0002;
+  transition: background 0.15s, left 0.35s cubic-bezier(.4,0,.2,1);
+}
+.sidebar.fechado ~ .sidebar-tab,
+.shrink ~ .sidebar-tab {
+  left: 14px;
+}
+.sidebar-tab:hover {
+  background: #19529b;
+  color: #ffc107;
+}
+.sidebar-content {
+  width: 100%;
+  padding-left: 18px;
+  padding-right: 12px;
+}
+.sidebar h2 {
+  font-size: 1.15rem;
+  color: #ffc107;
+  margin-bottom: 24px;
+  margin-top: 10px;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sidebar ul li {
+  margin: 18px 0;
+}
+.sidebar ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+.sidebar ul li a:hover {
+  color: #ffc107;
+}
+
+@media (max-width: 900px) {
+  .sidebar,
+  .sidebar.fechado {
+    position: fixed;
+    width: 100vw;
+    min-width: unset;
+    height: 56px;
+    left: 0;
+    top: 0;
+    transform: none !important;
+    padding: 0 0 0 12px;
+    flex-direction: row;
+    align-items: center;
+    box-shadow: 0 2px 10px #0002;
+  }
+  .sidebar-tab, .sidebar.fechado ~ .sidebar-tab {
+    top: 8px;
+    left: 12px;
+    border-radius: 12px;
+    border-left: 2px solid #19529b;
+    border-right: none;
+  }
+  .sidebar-content {
+    flex-direction: row;
+    align-items: center;
+    padding-left: 58px;
+    padding-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 100%;
+  }
+  .push-main,
+  .shrink {
+    margin-left: 0 !important;
+    margin-top: 60px;
+    transition: margin 0.3s;
+  }
+}
+
+/* ----------------------------------
+   HOME: Upload, logos, tabelas, arquivos
+---------------------------------- */
+.container {
+  text-align: center;
+  width: 90%;
+  max-width: 700px;
+  padding: 20px;
+  margin: auto;
+}
+.logo {
+  width: 340px;
+  max-width: 100%;
+  margin: 30px auto 25px auto;
+  display: block;
+}
+.logo-mini {
+  width: 70px;
+  position: absolute;
+  top: 16px;
+  right: 40px;
+  opacity: 0.95;
+  z-index: 1000;
+}
+.img-logo {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto 10px auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #0001;
+}
+.alinhado-esquerda {
+  text-align: left;
+  margin-left: 350px;
+  margin-right: auto;
+  max-width: 90%;
+}
+.home-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.logo-coluna {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.upload-box {
+  background: #f4f6fa;
+  border: 2px dashed #ccc;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  width: 280px;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.upload-box .img-logo {
+  margin: 0;
+  max-width: 240px;
+  max-height: 120px;
+  border-radius: 8px;
+}
+.upload-box .instrucoes {
+  color: #888;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+.upload-box small {
+  color: #666;
+  font-size: 12px;
+}
+/* Área de upload de dados */
+.upload-dados {
+  flex: 1;
+  background-color: #eef2f7;
+  border-radius: 10px;
+  padding: 24px;
+  min-width: 400px;
+}
+.upload-dados h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+.dropzone {
+  border: 2px dashed #ccc;
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 10px;
+}
+.dropzone p {
+  font-weight: bold;
+  margin: 0;
+}
+.dropzone small {
+  font-size: 12px;
+  color: #555;
+}
+.upload-label {
+  display: inline-block;
+  background-color: #0052cc;
+  color: white;
+  padding: 8px 18px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+.upload-label:hover {
+  background-color: #003d99;
+}
+input[type="file"] {
+  display: none;
+}
+/* Visualização das tabelas */
+.preview-container {
+  margin-top: 30px;
+}
+.preview-bloco {
+  margin-bottom: 25px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px 10px;
+  box-shadow: 0 2px 8px #0001;
+}
+.table-wrapper {
+  max-height: 300px;
+  overflow-x: auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 6px;
+  background-color: #fefefe;
+}
+/* ---- Lista de arquivos importados em upload-dados ---- */
+.lista-arquivos {
+  list-style: none;
+  margin: 16px 0 0 0;
+  padding: 0;
+}
+.lista-arquivos li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f6f9fb;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  padding: 7px 12px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.lista-arquivos .nome-arquivo {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lista-arquivos .btn-remover {
+  background: transparent;
+  border: none;
+  color: #cc0000;
+  font-size: 18px;
+  cursor: pointer;
+}
+.lista-arquivos .btn-remover:hover {
+  color: #ff2c2c;
+}
+
+/* ----------------------------------
+   Responsividade adicional (home, sidebar, etc)
+---------------------------------- */
+@media (max-width: 900px) {
+  .main-content {
+    padding: 10px;
+  }
+  .start-home .alinhado-esquerda {
+    margin-left: 10px;
+    margin-right: 10px;
+    max-width: 98%;
+  }
+}
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+  }
+  .main-content {
+    padding: 10px;
+  }
+  .check-groups {
+    flex-direction: column;
+    align-items: center;
+  }
+  .check-group {
+    max-width: 100%;
+  }
+  .home-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  .upload-dados {
+    min-width: 100%;
+  }
+}
