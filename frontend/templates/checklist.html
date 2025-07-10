@@ -8,64 +8,159 @@
 <body class="checklist-page">
 
   <!-- Logomarca DataLume centralizada no topo -->
-  <div style="text-align:center; margin-top:18px; margin-bottom:12px;">
+  <div style="text-align:center; margin-top:5px; margin-bottom:5px;">
     <img src="{{ url_for('static', filename='img/datalume.png') }}" alt="Logo DataLume" class="logo-central">
   </div>
 
   <div class="check-container">
     <h1 class="splash-titulo" style="margin-top: 0; margin-bottom: 13px;">Checklist do Sistema</h1>
-    <p class="check-explicacao" style="margin-bottom: 35px;">
+    <p class="check-explicacao" style="margin-bottom: 20px;">
       Esta página faz uma verificação automática para garantir que seu computador está pronto para utilizar todas as funcionalidades do DataLume.<br>
-      Caso algum item esteja em vermelho ou como ‘Não instalado’, pode haver limitações no uso do sistema e recomendamos ajustar o ambiente antes de prosseguir.
+      Caso algum item esteja em vermelho, pode haver limitações no uso do sistema e recomendamos ajustar o ambiente antes de prosseguir.
     </p>
 
-    <!-- Grupos em linha (lado a lado) -->
     <div class="check-groups" style="flex-direction:row; gap:36px;">
-      <!-- Configuração do Sistema -->
+      <!-- Tabela 1 – Configuração do Sistema -->
       <div class="check-group">
         <h2>Configuração do Sistema</h2>
         <table>
           <tr><th>Item</th><th>Status</th></tr>
-          <tr><td>Sistema Operacional</td><td>{{ sistema }}</td></tr>
-          <tr><td>Arquitetura</td><td>{{ arquitetura }}</td></tr>
-          <tr><td>Versão do Python</td><td>{{ python_version }}</td></tr>
-          <tr><td>Microsoft Excel</td><td>{{ excel }}</td></tr>
-          <tr><td>Power BI Desktop</td><td>{{ power_bi }}</td></tr>
+          <tr>
+            <td>Sistema Operacional</td>
+            <td>
+              {% if sistema == "Windows" %}
+                <span class="ok">Windows</span>
+              {% elif sistema == "Linux" %}
+                <span class="ok">Linux</span>
+              {% elif sistema == "Darwin" %}
+                <span class="ok">MacOS</span>
+              {% else %}
+                <span class="fail">{{ sistema }}</span>
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <td>Arquitetura</td>
+            <td>
+              {% if arquitetura in ["64bit", "32bit"] %}
+                <span class="ok">{{ arquitetura }}</span>
+              {% else %}
+                <span class="fail">{{ arquitetura }}</span>
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <td>Versão do Python</td>
+            <td>
+              {% if python_version %}
+                <span class="ok">{{ python_version }}</span>
+              {% else %}
+                <span class="fail">Não localizado</span>
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <td>Microsoft Excel</td>
+            <td>
+              {% if excel == "Instalado" %}
+                <span class="ok">Instalado</span>
+              {% elif excel == "Não encontrado" or excel == "Não localizado" %}
+                <span class="fail">{{ excel }}</span>
+              {% elif "Permissão negada" in excel or "Erro" in excel %}
+                <span class="fail">{{ excel }}</span>
+              {% else %}
+                {{ excel }}
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <td>Power BI Desktop</td>
+            <td>
+              {% if power_bi == "Instalado" %}
+                <span class="ok">Instalado</span>
+              {% elif power_bi == "Não localizado" or power_bi == "Não encontrado" %}
+                <span class="fail">{{ power_bi }}</span>
+              {% elif "Permissão negada" in power_bi or "Erro" in power_bi %}
+                <span class="fail">{{ power_bi }}</span>
+              {% else %}
+                {{ power_bi }}
+              {% endif %}
+            </td>
+          </tr>
         </table>
       </div>
-      <!-- Pré-requisitos do DataLume -->
+
+      <!-- Tabela 2 – Pré-requisitos do DataLume -->
       <div class="check-group">
         <h2>Pré-requisitos do DataLume</h2>
         <table>
           <tr><th>Item</th><th>Status</th></tr>
           <tr>
             <td>Permissão de Escrita</td>
-            <td>{% if permissao %}OK{% else %}<span class="fail">Sem permissão</span>{% endif %}</td>
+            <td>
+              {% if permissao %}
+                <span class="ok">OK</span>
+              {% else %}
+                <span class="fail">Sem permissão</span>
+              {% endif %}
+            </td>
           </tr>
           <tr>
             <td>Biblioteca Flask</td>
-            <td>{% if flask %}Instalada{% else %}<span class="fail">Não instalada</span>{% endif %}</td>
+            <td>
+              {% if flask %}
+                <span class="ok">Instalada</span>
+              {% else %}
+                <span class="fail">Não instalada</span>
+              {% endif %}
+            </td>
           </tr>
           <tr>
             <td>Biblioteca Pandas</td>
-            <td>{% if pandas %}Instalada{% else %}<span class="fail">Não instalada</span>{% endif %}</td>
+            <td>
+              {% if pandas %}
+                <span class="ok">Instalada</span>
+              {% else %}
+                <span class="fail">Não instalada</span>
+              {% endif %}
+            </td>
           </tr>
           <tr>
             <td>Biblioteca openpyxl</td>
-            <td>{% if openpyxl %}Instalada{% else %}<span class="fail">Não instalada</span>{% endif %}</td>
+            <td>
+              {% if openpyxl %}
+                <span class="ok">Instalada</span>
+              {% else %}
+                <span class="fail">Não instalada</span>
+              {% endif %}
+            </td>
           </tr>
           <tr>
             <td>Biblioteca xlrd</td>
-            <td>{% if xlrd %}Instalada{% else %}<span class="fail">Não instalada</span>{% endif %}</td>
+            <td>
+              {% if xlrd %}
+                <span class="ok">Instalada</span>
+              {% else %}
+                <span class="fail">Não instalada</span>
+              {% endif %}
+            </td>
           </tr>
         </table>
       </div>
     </div>
 
-    <!-- Botão azul padrão, mais afastado das tabelas -->
-    <div class="check-btn-container" style="text-align:center; margin-top:50px;">
-      <a href="/start-home" class="btn-primario" style="padding: 13px 32px; font-size:17px; border-radius:7px; background:#0052cc; color:#fff; text-decoration:none; font-weight:600;">Prosseguir para o DataLume</a>
+    <!-- Botão "Iniciar Análise" e barra de progresso abaixo -->
+    <div style="max-width: 600px; margin: 0 auto;">
+      <div class="check-btn-container" style="text-align:center; margin-top:20px;">
+        <button id="btn-iniciar" class="btn-primario" style="padding: 10px 10px; font-size:17px; border-radius:7px; background:#0052cc; color:#fff; text-decoration:none; font-weight:600;">Iniciar Análise</button>
+      </div>
+      <div class="progress-bar-container" style="margin-top: 15px;">
+        <div class="progress-bar" id="progress-bar-checklist"></div>
+      </div>
     </div>
   </div>
+
+  <!-- Checklist JS (barra de progresso + botão) -->
+  <script src="{{ url_for('static', filename='js/checklist.js') }}"></script>
 </body>
 </html>

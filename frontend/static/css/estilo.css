@@ -1,6 +1,7 @@
-/* ----------------------------------
+/* --------------------------------------
    Estilo geral da página inteira
----------------------------------- */
+-------------------------------------- */
+/* Reset de margem, fonte padrão e cor base */
 body {
   margin: 0;
   font-family: 'Segoe UI', 'Montserrat', sans-serif;
@@ -10,29 +11,32 @@ body {
   overflow-x: hidden;
 }
 
-/* ----------------------------------
-   LOGOMARCA TOPO PADRÃO
----------------------------------- */
-.logo-topo {
-  width: 350px;
-  max-width: 95vw;
+/* --------------------------------------
+   Logomarca padrão topo (usada no splash e checklist)
+-------------------------------------- */
+/* Mantém centralização e responsividade para logo no topo */
+.logo-topo,
+.logo-central {
+  width: 350px;              /* Tamanho padrão desktop */
+  max-width: 95vw;           /* Adapta logo a telas pequenas */
   display: block;
-  margin: 38px auto 22px auto;
+  margin: 5px auto 10px auto;/* Margem topo e base ajustadas */
   background: none;
   box-shadow: none;
 }
-
 @media (max-width: 500px) {
-  .logo-topo {
+  .logo-topo,
+  .logo-central {
     width: 80vw;
     margin-top: 22px;
     margin-bottom: 10px;
   }
 }
 
-/* ----------------------------------
+/* --------------------------------------
    Splash Page - Centralização e Visual
----------------------------------- */
+-------------------------------------- */
+/* Página inicial splash: centralizada vertical e horizontalmente */
 .splash-page {
   display: flex;
   flex-direction: column;
@@ -41,39 +45,32 @@ body {
   background: #f8fbfd;
   justify-content: center;
 }
+/* Container da logomarca da splash */
 .splash-logo-container {
-  margin-top: 10px;
+  margin-top: 0px;
   text-align: center;
 }
-.logo-central {
-  width: 350px;
-  max-width: 95vw;
-  margin: 0 auto 18px auto;
-  display: block;
-  background: none;
-  box-shadow: none;
-}
 
-/* Bloco central da splash */
+/* Bloco principal centralizado da splash */
 .splash-central {
-  max-width: 510px;
+  max-width: 650px;                  /* Largura aumentada conforme ajuste */
   margin: 0 auto;
   text-align: center;
   padding: 12px 18px 0 18px;
   border-radius: 20px;
 }
 
-/* Título principal centralizado */
+/* Título principal splash */
 .splash-titulo {
   font-size: 29px;
   font-weight: bold;
-  margin-top: 12px;
+  margin-top: 10px;
   margin-bottom: 10px;
   color: #222;
   text-align: center;
 }
 
-/* Slogan azul-petróleo, 1 linha */
+/* Slogan azul-petróleo, força em uma linha só, overflow controlado */
 .slogan {
   color: #008080;
   font-size: 18px;
@@ -96,7 +93,7 @@ body {
   text-align: center;
 }
 
-/* Descrição do DataLume (centralizada) */
+/* Descrição centralizada */
 .splash-descricao {
   font-size: 15.7px;
   color: #444;
@@ -105,7 +102,7 @@ body {
   text-align: center;
 }
 
-/* Frase de impacto acima do botão */
+/* Frase de impacto acima dos botões */
 .splash-impacto {
   font-size: 17px;
   color: #222;
@@ -115,74 +112,96 @@ body {
   text-align: center;
 }
 
-/* Botão e barra de progresso centralizados */
-.splash-btn-container {
+/* Container dos dois botões principais lado a lado */
+.splash-btns-duplo {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;      /* Horizontal em desktop */
   justify-content: center;
+  gap: 22px;                /* Espaço entre botões */
+  margin-bottom: 18px;
+}
+@media (max-width: 500px) {
+  .splash-btns-duplo {
+    flex-direction: column; /* Empilha botões no mobile */
+    gap: 16px;
+  }
 }
 
-.splash-btn {
+/* --------------------------------------
+   Botões principais (Splash, Checklist, Home)
+-------------------------------------- */
+/* Botão padrão azul DataLume, com foco, hover e disabled */
+.btn-primario,
+.splash-btn,
+.checklist-btn {
   min-width: 180px;
-  max-width: 320px;
+  max-width: 240px;
   font-size: 17px;
   padding: 11px 0;
-  margin: 0 auto 13px auto;
-  display: block;
-  background-color: #0052cc;
+  display: inline-block;
+  background-color: #0052cc;    /* Azul padrão DataLume */
   color: white;
   border: none;
   border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s, transform 0.2s;
+  text-align: center;
+  text-decoration: none;
 }
-.splash-btn:hover:enabled {
+.btn-primario:hover:enabled,
+.splash-btn:hover:enabled,
+.checklist-btn:hover:enabled,
+.btn-primario:focus,
+.splash-btn:focus,
+.checklist-btn:focus {
   background-color: #003d99;
   transform: scale(1.04);
 }
+.btn-primario:disabled,
 .splash-btn:disabled,
+.checklist-btn:disabled,
 .btn-desativado {
   opacity: 0.55;
   cursor: not-allowed;
 }
 
-/* Barra de progresso centralizada com largura fixa */
+/* Barra de progresso centralizada logo abaixo dos botões */
 .progress-bar-container {
   width: 550px;
   margin: 0 auto;
   background: none;
   padding: 0;
-  height: 8px;
+  height: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .progress-bar {
   width: 0%;
-  height: 6px;
+  height: 10px;
   background-color: #00cc99;
   border-radius: 10px;
   transition: width 0.3s;
 }
-
-/* Responsivo para telas menores */
+/* Barra responsiva em telas pequenas */
 @media (max-width: 500px) {
   .splash-central { max-width: 95vw; }
-  .progress-bar-container { width: 95vw; max-width: 300px;}
-  .logo-central { width: 80vw; max-width: 99vw;}
+  .progress-bar-container { width: 95vw; max-width: 300px; }
+  .logo-central { width: 80vw; max-width: 99vw; }
 }
 
-/* ----------------------------------
+/* --------------------------------------
    Checklist Page - Blocos e Tabelas
----------------------------------- */
+-------------------------------------- */
+/* Container central do checklist */
 .check-container {
-  max-width: 1100px;
+  max-width: 1150px;
   margin: 0 auto;
   padding: 28px 18px 42px 18px;
   text-align: center;
 }
+/* Flex para alinhar duas tabelas lado a lado (desktop) */
 .check-groups {
   display: flex;
   flex-wrap: wrap;
@@ -222,6 +241,7 @@ body {
   background-color: #f0f7ff;
   font-weight: bold;
 }
+/* Classes de status de checagem: ok (verde), fail (vermelho) */
 .ok {
   color: green;
   font-weight: bold;
@@ -230,32 +250,13 @@ body {
   color: red;
   font-weight: bold;
 }
-
-/* Botão checklist padronizado */
+/* Botão checklist alinhado ao centro */
 .checklist-btn {
-  min-width: 180px;
-  max-width: 320px;
-  font-size: 17px;
-  padding: 11px 0;
   margin: 0 auto 13px auto;
-  display: block;
-  background-color: #0052cc;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
-}
-.checklist-btn:hover:enabled {
-  background-color: #003d99;
-  transform: scale(1.04);
-}
-.checklist-btn:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
+  padding: 13px 32px;
 }
 
+/* Responsividade: empilha as tabelas no mobile */
 @media (max-width: 900px) {
   .check-groups {
     flex-direction: column;
@@ -267,9 +268,10 @@ body {
   }
 }
 
-/* ----------------------------------
+/* --------------------------------------
    Página HOME - Upload/Preview/Sidebar
----------------------------------- */
+-------------------------------------- */
+/* Layout base das páginas principais */
 .layout {
   display: flex;
   height: 100vh;
@@ -282,7 +284,6 @@ body {
   margin-left: 52px !important;
   transition: margin-left 0.35s cubic-bezier(.4,0,.2,1);
 }
-
 .main-content {
   width: 100%;
   padding: 30px 0 0 0;
@@ -290,7 +291,7 @@ body {
   min-height: 100vh;
 }
 
-/* SIDEBAR PUSH COM ABA FIXA */
+/* SIDEBAR lateral fixa (páginas HOME) */
 .sidebar {
   position: fixed;
   top: 0;
@@ -371,7 +372,7 @@ body {
 .sidebar ul li a:hover {
   color: #ffc107;
 }
-
+/* Sidebar responsiva */
 @media (max-width: 900px) {
   .sidebar,
   .sidebar.fechado {
@@ -411,9 +412,10 @@ body {
   }
 }
 
-/* ----------------------------------
+/* --------------------------------------
    HOME: Upload, logos, tabelas, arquivos
----------------------------------- */
+-------------------------------------- */
+/* Container principal centralizado */
 .container {
   text-align: center;
   width: 90%;
@@ -421,6 +423,7 @@ body {
   padding: 20px;
   margin: auto;
 }
+/* Logomarcas principais (home, upload) */
 .logo {
   width: 340px;
   max-width: 100%;
@@ -449,6 +452,7 @@ body {
   margin-right: auto;
   max-width: 90%;
 }
+/* Grid para uploads e visualização */
 .home-grid {
   display: flex;
   flex-wrap: wrap;
@@ -557,7 +561,7 @@ input[type="file"] {
   border-radius: 6px;
   background-color: #fefefe;
 }
-/* ---- Lista de arquivos importados em upload-dados ---- */
+/* Lista de arquivos importados */
 .lista-arquivos {
   list-style: none;
   margin: 16px 0 0 0;
@@ -591,9 +595,9 @@ input[type="file"] {
   color: #ff2c2c;
 }
 
-/* ----------------------------------
+/* --------------------------------------
    Responsividade adicional (home, sidebar, etc)
----------------------------------- */
+-------------------------------------- */
 @media (max-width: 900px) {
   .main-content {
     padding: 10px;

@@ -30,7 +30,7 @@
     {% if alerta_estrutura %}
       <div class="alerta-estrutura">
         <p>{{ alerta_estrutura|safe }}</p>
-        <button onclick="window.location.reload()">Ciente</button>
+        <button id="btnReloadAlerta">Ciente</button>
       </div>
     {% endif %}
 
@@ -46,7 +46,7 @@
             {% else %}
               <label class="upload-label">
                 <span class="instrucoes">Arraste ou clique para importar<br>PNG, JPG, JPEG</span>
-                <input type="file" name="logo_org" accept=".png,.jpg,.jpeg" onchange="uploadLogo('logo_org', this)">
+                <input type="file" name="logo_org" accept=".png,.jpg,.jpeg" id="input-logo-org">
               </label>
             {% endif %}
           </div>
@@ -57,7 +57,7 @@
             {% else %}
               <label class="upload-label">
                 <span class="instrucoes">Arraste ou clique para importar<br>PNG, JPG, JPEG</span>
-                <input type="file" name="logo_setor" accept=".png,.jpg,.jpeg" onchange="uploadLogo('logo_setor', this)">
+                <input type="file" name="logo_setor" accept=".png,.jpg,.jpeg" id="input-logo-setor">
               </label>
             {% endif %}
           </div>
@@ -70,7 +70,7 @@
           <div class="dropzone">
             <label class="upload-label">
               <span class="instrucoes">Arraste, solte ou clique<br>.CSV, .XLSX</span>
-              <input type="file" name="datafiles" multiple accept=".csv,.xlsx" onchange="uploadFiles(this)">
+              <input type="file" name="datafiles" multiple accept=".csv,.xlsx" id="input-datafiles">
             </label>
           </div>
           <!-- Lista dos arquivos importados -->
@@ -79,7 +79,10 @@
               {% for item in arquivos_lista %}
                 <li>
                   <span class="nome-arquivo">{{ item.filename }} <small>({{ item.tamanho_kb }} KB)</small></span>
-                  <button class="btn-remover" title="Excluir arquivo" onclick="removerArquivo('{{ item.filename }}');return false;">🗑️</button>
+                  <button class="btn-remover" 
+                          type="button"
+                          data-arquivo="{{ item.filename }}"
+                          title="Excluir arquivo">🗑️</button>
                 </li>
               {% endfor %}
             </ul>
@@ -125,5 +128,6 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
   <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/home.js') }}"></script>
 </body>
 </html>
